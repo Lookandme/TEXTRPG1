@@ -13,7 +13,7 @@ namespace TextRPG1
         {
             GameManager gameManager = new GameManager();
             Inventory inventory = new Inventory();
-            Store store = new Store();
+            
 
             bool exit = false;
 
@@ -49,7 +49,7 @@ namespace TextRPG1
                         break;
                     case 1:
                         // 구매 관리창 열기
-                        store.UsingStore_BuyItem(item, character);
+                        UsingStore_BuyItem(item, character);
                         break;
                 }
             }

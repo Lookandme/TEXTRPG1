@@ -17,7 +17,7 @@ namespace TextRPG1
         public int Health { get; set; }
         public int Gold { get; set; }
         public int ItemEquipStusNumat { get; set; } // 장착 아이템의  공격력 수치
-        public int ItemEquipStusNumdf { get; set; }// 장착 아이템의의 방어력 수치
+        public int ItemEquipStusNumdf { get; set; } // 장착 아이템의의 방어력 수치
 
         public Character(int level, int attack, int defense, int health, int gold)
         {

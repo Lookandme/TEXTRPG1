@@ -29,6 +29,8 @@ namespace TextRPG1
 
             int selec = int.Parse(Console.ReadLine());
 
+            
+
         }
     }
 }

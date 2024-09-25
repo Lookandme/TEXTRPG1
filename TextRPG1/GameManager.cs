@@ -9,42 +9,7 @@ namespace TextRPG1
 {
     public class GameManager
     {
-        //public void OnMove(int selec)
-        //{
-        //    switch (selec)
-        //    {
-        //        case 0:
-        //            {
-        //                // 나가기
-        //                Console.Clear();
-        //                Start.Startmap();
-        //                break;
-        //            }
-        //        case 1:
-        //            {
-        //                // 
-        //                Console.Clear();
-        //                //Program.ch.Parameter();
-        //                break;
-        //            }
-        //        case 2:
-        //            {
-        //                Console.Clear();
-        //                //Program.chinven.Inven(5, 4);
-        //                break;
-        //            }
-        //        default:
-        //            {
-        //                Console.WriteLine("잘못된 입력입니다");
-
-        //                if (selec > 0 && input < 3)
-        //                {
-
-        //                }
-        //                break;
-        //            }
-        //    }
-        //}
+     
 
         public int InputManager(int start, int end)
         {
@@ -61,6 +26,7 @@ namespace TextRPG1
                     Console.WriteLine("잘못된 입력입니다.");
                     Console.Write(">>> ");
                     continue;
+                    
                 }
             }
         }
@@ -68,7 +34,7 @@ namespace TextRPG1
         // 시작 화면 메소드
         public void StartScreen(Character character, Item item)
         {
-            GameManager gameManager = new GameManager();
+           
 
             Console.WriteLine("스파르타 던전에 오신 여러분 환영합니다.");
             Console.WriteLine("\n");
@@ -76,15 +42,16 @@ namespace TextRPG1
             Console.WriteLine("\n");
             Console.Write(">>> ");
             character.Name = Console.ReadLine();
+            int num = int.Parse(Console.ReadLine());
 
             // 이름 적기
-            gameManager.ChoiceClass(character, item);
+            ChoiceClass(character, item);
         }
 
         // 캐릭터 선택창 메소드
         public void ChoiceClass(Character character, Item item)
         {
-            GameManager gameManager = new GameManager();
+            
 
             while (true)
             { 
@@ -100,7 +67,7 @@ namespace TextRPG1
             Console.Write(">>> ");
 
                 // 직업선택
-                switch (gameManager.InputManager(1, 4))
+                switch (InputManager(1, 4))
                 {
                     case 1:
                         {
@@ -134,14 +101,13 @@ namespace TextRPG1
                 Console.WriteLine(character.Class + " 를 선택하셨습니다\n");
                 Thread.Sleep(2000);
 
-                gameManager.Village(character, item);
+                Village(character, item);
             }
         }
 
         // 마을 화면 메소드
         public void Village(Character character, Item item)
         {
-            GameManager gameManager = new GameManager();
             Inventory inventory = new Inventory();
             Store store = new Store();
 
@@ -164,7 +130,7 @@ namespace TextRPG1
                 Console.Write(">> ");
 
 
-                switch (gameManager.InputManager(1, 3))
+                switch (InputManager(1, 3))
                 {
                     case 1:
                         // 상태창열기

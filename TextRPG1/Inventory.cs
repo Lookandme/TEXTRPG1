@@ -19,7 +19,7 @@ namespace TextRPG1
         public void Inven(Item item, Character character)
         {
             GameManager gameManager = new GameManager();
-            Inventory inventory = new Inventory();
+            
 
             bool exit = false;
 
@@ -66,7 +66,7 @@ namespace TextRPG1
                         break;
                     case 1:
                         // 아이템 관리창 열기
-                        inventory.ItemManage(item, character);
+                        ItemManage(item, character);
                         break;
                 }
             }
