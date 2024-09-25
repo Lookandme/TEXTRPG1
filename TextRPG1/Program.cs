@@ -17,7 +17,7 @@ namespace TextRPG1
             Character character = new Character(1, 10, 5, 100, 3000); // 플레이어 객체 생성
             
             // 게임 시작
-            gameManager.StartScreen(character, item);
+            gameManager.StartScreen(character, item);//아무말
 
 
         }
