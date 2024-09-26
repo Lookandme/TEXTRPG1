@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Formats.Asn1.AsnWriter;
-
-namespace TextRPG1
+﻿namespace TextRPG1
 {
     public class Inventory
     {
@@ -89,12 +82,12 @@ namespace TextRPG1
                         {
                             Console.Write("[E]");
 
-                            Console.WriteLine($"{item.Itemname} \t| {item.ItemStatus} +{item.ItemStatusNum} | {item.ItemInform}");
-
-
                             item.ItemStatusNum = item.ItemEquipStusNum;
                         }
+                            
 
+
+                        Console.WriteLine($"{item.Itemname} \t| {item.ItemStatus} +{item.ItemStatusNum} | {item.ItemInform}");
                     }
                 }
 
@@ -107,17 +100,16 @@ namespace TextRPG1
                 int num = gameManager.InputManager(0, count);
 
                 if (num == 0)
-                {
+
                     exit = true;
-                }
+
+                else if (items[num-1].ItemEquip == true)
+
+                    items[num-1].ItemEquip = false;
+
+
                 else
-                {
-                    // 장착되어있으면 -> 장착으로
-                    if (items[num-1].ItemEquip == true)
-                        items[num-1].ItemEquip = false;
-                    else
-                        items[num-1].ItemEquip = true;
-                }
+                    items[num-1].ItemEquip = true;
             }
         }
     }
