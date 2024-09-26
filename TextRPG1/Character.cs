@@ -16,8 +16,6 @@ namespace TextRPG1
         public int Defense { get; set; }
         public int Health { get; set; }
         public int Gold { get; set; }
-        public int ItemEquipStusNumat { get; set; } // 장착 아이템의  공격력 수치
-        public int ItemEquipStusNumdf { get; set; } // 장착 아이템의의 방어력 수치
 
         public Character(int level, int attack, int defense, int health, int gold)
         {
@@ -28,12 +26,10 @@ namespace TextRPG1
             Defense = defense;
             Health = health;
             Gold = gold;
-            ItemEquipStusNumat = 0;
-            ItemEquipStusNumdf = 0;
         }
 
         // 상태창 메소드
-        public void Parameter(Character character, Inventory inventory, Item item)
+        public void Parameter(Character character, Inventory inventory, List<Item> items)
         {
             while (true)
             {
@@ -46,8 +42,8 @@ namespace TextRPG1
                 Console.WriteLine("Lv " + character.Level);
                 Console.WriteLine("이름: " + character.Name);
                 Console.WriteLine("Chad: " + character.Class);
-                Console.WriteLine("공격력: " + character.Attack + "( +" + character.ItemEquipStusNumat + ")"); // 장착 된 아이템 수치 를 받아서 적용
-                Console.WriteLine("방어력: " + character.Defense + "( +" + character.ItemEquipStusNumdf + ")");
+                Console.WriteLine("공격력: " + character.Attack);// + "(" + items.ItemEquipStusNum + ")"); // 장착 된 아이템 수치 를 받아서 적용
+                Console.WriteLine("방어력: " + character.Defense);// + "(" + items.ItemEquipStusNum + ")");
                 Console.WriteLine("체력: " + character.Health);
                 Console.WriteLine("Gold: " + character.Gold);
                 Console.WriteLine("\n\n");

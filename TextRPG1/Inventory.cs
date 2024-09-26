@@ -16,10 +16,10 @@ namespace TextRPG1
 
 
         // 인벤 기능 추가 예정
-        public void Inven(Item item, Character character)
+        public void Inven(List<Item> items, Character character)
         {
             GameManager gameManager = new GameManager();
-            
+            Inventory inventory = new Inventory();
 
             bool exit = false;
 
@@ -36,20 +36,9 @@ namespace TextRPG1
                 Console.WriteLine("[ 아이템 목록 ]");
                 Console.WriteLine("\n");
 
-                for (int i = 1; item.itemList[i] != null; i++)
+                foreach (Item item in items)
                 {
-                    if (item.itemList[i].ItemBuy == true)
-                    {
-                        Console.Write($"-");
-
-                        if (item.itemList[i].ItemEquip == true)
-                        {
-                            Console.Write("[E]");
-                            
-                            
-                        }
-                        Console.Write($"{item.itemList[i].Itemname} \t| {item.itemList[i].ItemStatus} +{item.itemList[i].ItemStatusNum} | {item.itemList[i].ItemInform}\n");
-                    }
+                    Console.Write($"- {item.Itemname} \t| {item.ItemStatus} + {item.ItemStatusNum} | {item.ItemInform}\n");
                 }
 
                 Console.WriteLine("\n\n");
@@ -66,14 +55,14 @@ namespace TextRPG1
                         break;
                     case 1:
                         // 아이템 관리창 열기
-                        ItemManage(item, character);
+                        inventory.ItemManage(items, character);
                         break;
                 }
             }
         }
 
         // 장착 관리 메소드
-        public void ItemManage(Item item, Character character)
+        public void ItemManage(List<Item> items, Character character)
         {
             GameManager gameManager = new GameManager();
 
@@ -89,24 +78,24 @@ namespace TextRPG1
                 Console.WriteLine("\n");
                 Console.WriteLine("[ 아이템 목록 ]");
                 Console.WriteLine("\n");
-                for (int i = 1; (item.itemList[i] != null); i++)
+                foreach (Item item in items)
                 {
                     count++;
-                    if (item.itemList[i].ItemBuy == true)
+                    if (item.ItemBuy == true)
                     {
-                        Console.Write($"- {i} ");
+                        Console.Write($"- {count} ");
 
-                        if (item.itemList[i].ItemEquip == true)
+                        if (item.ItemEquip == true)
                         {
                             Console.Write("[E]");
 
-                            
-                        }
-                        Console.Write($"{item.itemList[i].Itemname} \t| {item.itemList[i].ItemStatus} +{item.itemList[i].ItemStatusNum} | {item.itemList[i].ItemInform}\n");
-                    }
-                        
-                    
+                            Console.WriteLine($"{item.Itemname} \t| {item.ItemStatus} +{item.ItemStatusNum} | {item.ItemInform}");
 
+
+                            item.ItemStatusNum = item.ItemEquipStusNum;
+                        }
+
+                    }
                 }
 
                 Console.WriteLine("\n\n");
@@ -119,37 +108,15 @@ namespace TextRPG1
 
                 if (num == 0)
                 {
-                    gameManager.Village(character, item);
+                    exit = true;
                 }
                 else
                 {
-                    // 장착되어있으면 -> 해제
-                    if (item.itemList[num].ItemEquip == true)
-                    {
-                        item.itemList[num].ItemEquip = false;
-
-                        if (item.itemList[num].ItemStatus == "공격력")
-                        {
-                            character.ItemEquipStusNumat = 0;
-                        }
-                        else if (item.itemList[num].ItemStatus == "방어력")
-                        {
-                            character.ItemEquipStusNumdf = 0;
-                        }
-                    }
-                    else  // 없으면 장착으로
-                    { 
-                        item.itemList[num].ItemEquip = true;
-
-                        if (item.itemList[num].ItemStatus == "공격력")
-                        {
-                            character.ItemEquipStusNumat = item.itemList[num].ItemStatusNum;
-                        }
-                        else if (item.itemList[num].ItemStatus == "방어력")
-                        {
-                            character.ItemEquipStusNumdf = item.itemList[num].ItemStatusNum;
-                        }
-                    }
+                    // 장착되어있으면 -> 장착으로
+                    if (items[num-1].ItemEquip == true)
+                        items[num-1].ItemEquip = false;
+                    else
+                        items[num-1].ItemEquip = true;
                 }
             }
         }

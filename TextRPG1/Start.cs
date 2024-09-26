@@ -27,9 +27,7 @@ namespace TextRPG1
             Console.WriteLine("원하는 행동을 결정해주세요");
             Console.Write(">> ");
 
-            int selec = int.Parse(Console.ReadLine());
-
-            
+            int selec = int.Parse(Console.ReadLine()!);
 
         }
     }

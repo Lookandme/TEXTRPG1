@@ -9,11 +9,11 @@ namespace TextRPG1
     public class Store
     {
         // 상점 입장 메소드
-        public void UsingStore(Item item, Character character)
+        public void UsingStore(List<Item> items, Character character)
         {
             GameManager gameManager = new GameManager();
             Inventory inventory = new Inventory();
-            
+            Store store = new Store();
 
             bool exit = false;
 
@@ -30,9 +30,9 @@ namespace TextRPG1
                 Console.WriteLine("[ 아이템 목록 ]");
                 Console.WriteLine("\n");
 
-                for (int i = 1; item.itemList[i] != null; i++)
+                foreach(Item item in items)
                 {
-                    Console.Write($"- {item.itemList[i].Itemname} \t| {item.itemList[i].ItemStatus} +{item.itemList[i].ItemStatusNum} | {item.itemList[i].ItemInform}\n");
+                    Console.Write($"- {item.Itemname} \t| {item.ItemStatus} + {item.ItemStatusNum} | {item.ItemInform}\n");
                 }
 
                 Console.WriteLine("\n\n");
@@ -49,13 +49,13 @@ namespace TextRPG1
                         break;
                     case 1:
                         // 구매 관리창 열기
-                        UsingStore_BuyItem(item, character);
+                        store.UsingStore_BuyItem(items, character);
                         break;
                 }
             }
         }
 
-        public void UsingStore_BuyItem(Item item, Character character)
+        public void UsingStore_BuyItem(List<Item> items, Character character)
         {
             GameManager gameManager = new GameManager();
 
@@ -73,21 +73,21 @@ namespace TextRPG1
                 Console.WriteLine("\n");
                 Console.WriteLine("[ 아이템 목록 ]");
                 Console.WriteLine("\n");
-                for (int i = 1; item.itemList[i] != null; i++)
+
+                foreach (Item item in items)
                 {
                     count++;
-                    Console.Write($"- {i} ");
-                    Console.Write($"{item.itemList[i].Itemname} \t| {item.itemList[i].ItemStatus} +{item.itemList[i].ItemStatusNum} | {item.itemList[i].ItemInform} | ");
+                    Console.Write($"- {count} ");
+                    Console.WriteLine($"- {item.Itemname} \t| {item.ItemStatus} + {item.ItemStatusNum} | {item.ItemInform}");
 
-                    if (item.itemList[i].ItemBuy == true)
+                    if (item.ItemBuy == true)
                     {
                         Console.WriteLine(" 구매완료");
                     }
                     else
                     {
-                        Console.WriteLine(item.itemList[i].Itemprice);
+                        Console.WriteLine(item.Itemprice);
                     }
-
                 }
 
                 Console.WriteLine("\n\n");
@@ -104,16 +104,16 @@ namespace TextRPG1
                 }
                 else
                 {
-                    if (item.itemList[num].ItemBuy == false)
+                    if (items[num-1].ItemBuy == false)
                     {
-                        if (character.Gold >= item.itemList[num].Itemprice)
+                        if (character.Gold >= items[num-1].Itemprice)
                         {
-                            item.itemList[num].ItemBuy = true;
-                            character.Gold -= item.itemList[num].Itemprice;
+                            items[num-1].ItemBuy = true;
+                            character.Gold -= items[num-1].Itemprice;
                         }
                         else
                         {
-                            Console.Write($"{item.itemList[num].Itemprice - character.Gold} ");
+                            Console.Write($"{items[num-1].Itemprice - character.Gold} ");
                             Console.WriteLine("Gold 만큼 부족합니다.");
                             Thread.Sleep(1000);
                         }
