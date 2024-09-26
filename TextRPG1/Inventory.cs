@@ -2,23 +2,36 @@
 {
     public class Inventory
     {
+        Item item = new Item();
+        GameManager gameManager = new GameManager();
+        Inventory inventory = new Inventory();
+        public bool Bought => item.ItemBuy = true;
+        public bool Equipped => item.ItemEquip = true;
+        public bool Itsmine => Bought && Equipped;
+
+
         public Inventory()
         {
-
+            
         }
+
+        
+
 
 
         // 인벤 기능 추가 예정
         public void Inven(List<Item> items, Character character)
         {
-            GameManager gameManager = new GameManager();
-            Inventory inventory = new Inventory();
+            
+            
 
             bool exit = false;
+            
 
             while (!exit)
             {
                 Console.Clear();
+              
                 // 코드 삭제
 
                 // 코드 이동
@@ -31,7 +44,9 @@
 
                 foreach (Item item in items)
                 {
-                    Console.Write($"- {item.Itemname} \t| {item.ItemStatus} + {item.ItemStatusNum} | {item.ItemInform}\n");
+                    if (Bought)
+
+                    { Console.Write($"- {item.Itemname} \t| {item.ItemStatus} + {item.ItemStatusNum} | {item.ItemInform}\n"); }
                 }
 
                 Console.WriteLine("\n\n");
@@ -74,11 +89,11 @@
                 foreach (Item item in items)
                 {
                     count++;
-                    if (item.ItemBuy == true)
+                    if (Bought)
                     {
                         Console.Write($"- {count} ");
 
-                        if (item.ItemEquip == true)
+                        if (Equipped)
                         {
                             Console.Write("[E]");
 
@@ -103,7 +118,7 @@
 
                     exit = true;
 
-                else if (items[num-1].ItemEquip == true)
+                else if (items[num-1].ItemEquip)
 
                     items[num-1].ItemEquip = false;
 

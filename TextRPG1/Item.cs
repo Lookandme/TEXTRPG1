@@ -24,6 +24,7 @@ namespace TextRPG1
             this.ItemBuy = itemBuy;
             this.ItemEquip = itemEquip;
             
+
         }
 
         // 기본 생성자
